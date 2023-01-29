@@ -3,12 +3,12 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 错题集
+title: record
 subtitle: ''
 description: ''
 keywords:
-author: John Doe
-language: en
+author: ocean99
+language: zh-CN
 timezone: ''
 
 # URL
@@ -19,6 +19,13 @@ permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
   trailing_html: true # Set to false to remove trailing '.html' from permalinks
+
+# Search
+search:
+  path: search.xml
+  field: post
+  content: true
+  format: html
 
 # Directory
 source_dir: source
@@ -97,9 +104,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
-
-# Deployment
+theme: next #landscape
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''
