@@ -107,4 +107,7 @@ ignore:
 theme: next #landscape
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: 'git'
+  repo: https://github.com/ocean-99/ocean-99.github.io
+  branch: 'gh-pages'
+  message: '常规发布'
