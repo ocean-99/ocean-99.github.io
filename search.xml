@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hello World</title>
+    <url>/2023/01/29/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>博客搭建</title>
+    <url>/2023/01/29/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<h1 id="博客搭建"><a href="#博客搭建" class="headerlink" title="博客搭建"></a>博客搭建</h1><h2 id="主要组件"><a href="#主要组件" class="headerlink" title="主要组件"></a>主要组件</h2><ul>
+<li>Hexo: 博客框架, markdown渲染为html.</li>
+<li>github: 代码托管.</li>
+</ul>
+<h2 id="搭建步骤"><a href="#搭建步骤" class="headerlink" title="搭建步骤"></a>搭建步骤</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装 hexo-cli</span></span><br><span class="line">npm i hexo-cli --global</span><br><span class="line"><span class="comment"># 初始化博客</span></span><br><span class="line">hexo init blog</span><br><span class="line"><span class="comment"># 到这里就可以本地查看博客了. `npm run server`</span></span><br><span class="line"><span class="comment"># 进入项目文件夹, 创建分支并推送</span></span><br><span class="line"><span class="built_in">cd</span> ./blog</span><br><span class="line">git remote add origin https://github.com/ocean-99/ocean-99.github.io.git</span><br><span class="line">git branch -M main</span><br><span class="line">git commit -a -m 初始化</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+
+<h3 id="部署到GitHub"><a href="#部署到GitHub" class="headerlink" title="部署到GitHub"></a>部署到GitHub</h3><p><a href="https://hexo.io/zh-cn/docs/github-pages">在 GitHub Pages 上部署 Hexo | Hexo</a></p>
+<ol>
+<li><p>创建仓库 <code>username.github.io</code> <code>username</code> 是你在 GitHub 上的用户名. 若以前推送过了, 直接改仓库名也可以, 记得改本地的推送地址.</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 <code>node --version</code> 指令检查你电脑上的 Node.js 版本，并记下该版本 (例如：<code>v16.y.z</code>)</p>
+</li>
+<li><p>确保Actions有写入权限. <strong>仓库主页</strong>-&gt;<strong>Settings</strong>-&gt;<strong>Actions</strong>-&gt;<strong>General</strong>-&gt;<strong>Workflow permissions</strong> 选中<code>Read and write permissions</code>后点击 <code>save</code>保存</p>
+</li>
+<li><p>在仓库中建立 <code>.github/workflows/pages.yml</code>(本地创了推上去也行)，并填入以下内容 (替换<code>node-version</code>的值)：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Pages</span></span><br><span class="line"></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">main</span> <span class="comment"># default branch</span></span><br><span class="line"></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">pages:</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">uses:</span> <span class="string">actions/checkout@v2</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Use</span> <span class="string">Node.js</span> <span class="number">16.</span><span class="string">x</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/setup-node@v2</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">node-version:</span> <span class="string">&quot;把我换成你的node版本&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Cache</span> <span class="string">NPM</span> <span class="string">dependencies</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/cache@v2</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">path:</span> <span class="string">node_modules</span></span><br><span class="line">          <span class="attr">key:</span> <span class="string">$&#123;&#123;</span> <span class="string">runner.OS</span> <span class="string">&#125;&#125;-npm-cache</span></span><br><span class="line">          <span class="attr">restore-keys:</span> <span class="string">|</span></span><br><span class="line"><span class="string">            $&#123;&#123; runner.OS &#125;&#125;-npm-cache</span></span><br><span class="line"><span class="string"></span>      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Install</span> <span class="string">Dependencies</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">npm</span> <span class="string">install</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Build</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">npm</span> <span class="string">run</span> <span class="string">build</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Deploy</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">peaceiris/actions-gh-pages@v3</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">github_token:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.GITHUB_TOKEN</span> <span class="string">&#125;&#125;</span></span><br><span class="line">          <span class="attr">publish_dir:</span> <span class="string">./public</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>上一步执行后, GitHub会执行action. 部署作业完成后，产生的页面会放在储存库中的 <code>gh-pages</code> 分支。</p>
+</li>
+<li><p>在储存库中前往 <strong>Settings</strong> &gt; <strong>Pages</strong> &gt; <strong>Source</strong>，并将 branch 改为 <code>gh-pages</code>。</p>
+</li>
+<li><p>前往 <em>username</em>.github.io 查看网站。</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>XSS攻击</title>
+    <url>/2023/01/29/%E5%85%B6%E4%BB%96/XSS%E6%94%BB%E5%87%BB/</url>
+    <content><![CDATA[<h2 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h2><p><a href="https://tech.meituan.com/2018/09/27/fe-security.html">前端安全系列（一）：如何防止XSS攻击？ - 美团技术团队 (meituan.com)</a></p>
+<blockquote>
+<p>Cross-Site Scripting（跨站脚本攻击）简称 XSS，是一种代码注入攻击。攻击者通过在目标网站上注入<strong>恶意脚本</strong>，使之在<strong>用户的浏览器上运行</strong>。利用这些恶意脚本，攻击者可获取用户的敏感信息如 Cookie、SessionID 等，进而危害数据安全。</p>
+<p>为了和 CSS 区分，这里把攻击的第一个字母改成了 X，于是叫做 XSS。</p>
+</blockquote>
+<h4 id="可能出现的地方"><a href="#可能出现的地方" class="headerlink" title="可能出现的地方:"></a>可能出现的地方:</h4><blockquote>
+<p>不仅仅是业务上的“用户的产生的内容”可以进行注入，包括 URL 上的参数等都可以是攻击的来源。在处理输入时，以下内容都不可信：</p>
+<ul>
+<li>来自用户的 UGC 信息(user-generated content)</li>
+<li>来自第三方的链接</li>
+<li>URL 参数</li>
+<li>POST 参数</li>
+<li>Referer （可能来自不可信的来源）</li>
+<li>Cookie （可能来自其他子域注入）</li>
+</ul>
+</blockquote>
+<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">value</span>=<span class="string">&quot;&quot;</span> /&gt;</span><span class="tag">&lt;<span class="name">button</span>&gt;</span>搜索<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">搜索时输入[&quot;&lt;script&gt;alert(XSS脚本!)&lt;/script&gt;],就会执行XSS</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    这里是用户的评论内容</span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">value</span>=<span class="string">&quot;请输入&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span><span class="tag">&lt;<span class="name">button</span>&gt;</span>提交评论<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">这里面可能没有对用户的输入进行判断,可输入脚本.比如输入:</span></span><br><span class="line"><span class="comment">&lt;img src=1 onerror=&quot;alert(1)&quot;/&gt;</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>other</category>
+      </categories>
+  </entry>
+</search>
